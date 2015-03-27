@@ -27,6 +27,15 @@
             e.on("stopped_at_floor", function(floorNum) {
                  demand[floorNum] = false;
                  console.log (demand);
+                 
+                console.log ("before " + e.destinationQueue);
+                var index = e.destinationQueue.indexOf(floorNum);
+                if (index > -1) {
+                    e.destinationQueue.splice(index, 1);
+                    e.checkDestinationQueue();
+                }
+                console.log ("after " + e.destinationQueue);
+
             });
         });
         
