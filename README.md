@@ -20,7 +20,7 @@ Plain stupid.
 * Transport requests are served randomly by one of the elevators
 * Destination queue is purged when stopping at a floor for both elevators
 * Success rate: 9/10
-* 
+
 ### [Challenge 05] (challenge05.js)
 * Elevators go to destination floors on demand
 * On the way they stop if they have capacity and there is someone waiting at the floor
