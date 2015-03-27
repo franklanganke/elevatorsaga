@@ -1,7 +1,7 @@
 {
     init: function(elevators, floors) {
 
-        var demand = [false, false, false, false, false];
+        var demand = [false, false, false, false, false, false];
         
         elevators.forEach(function(e) {
             e.on("idle", function() {
@@ -11,7 +11,7 @@
 
         elevators.forEach(function(e) {
             e.on("passing_floor", function(floorNum, direction) {
-                if(demand[floorNum] && e.loadFactor() < 0.4) {
+                if(demand[floorNum] && e.loadFactor() < 0.6) {
                     e.goToFloor(floorNum, true);
                 }
             });
@@ -26,6 +26,7 @@
         elevators.forEach(function(e) {
             e.on("stopped_at_floor", function(floorNum) {
                  demand[floorNum] = false;
+                 console.log (demand);
             });
         });
         
@@ -38,9 +39,12 @@
                 demand[f.floorNum()] = true;
             });            
         });
+
         
     },
     update: function(dt, elevators, floors) {
         // We normally don't need to do anything here
     }
+    
+    
 }
