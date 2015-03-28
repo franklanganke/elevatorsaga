@@ -1,15 +1,15 @@
 {
     init: function(elevators, floors) {
 
-        var max = 5;
+        var max = floors.length - 1;
         
         elevators.forEach(function(e) {
-            e["stop"] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            e["stop"] = [false, false, false];
         });
 
         elevators.forEach(function(e) {
             e.on("passing_floor", function(floorNum, direction) {
-                if(e.stop[floorNum] > 0) {                    
+                if(e.stop[floorNum]) {                    
                     e.goToFloor(floorNum, true);
                 }
             });
@@ -17,8 +17,8 @@
         
         elevators.forEach(function(e) {
             e.on("floor_button_pressed", function(floorNum) {
-                e.stop[floorNum]++;
-                console.log(e.stop);
+                e.stop[floorNum] = true;
+                // console.log(e.stop);
             });
         });
         
@@ -26,12 +26,16 @@
             e.on("stopped_at_floor", function(floorNum) {
                 if (floorNum == 0) {
                     e.goToFloor(max);
+					e.goingDownIndicator(false);
+					e.goingUpIndicator(true);
                 }
                 if (floorNum == max) {
                     e.goToFloor(0);
+					e.goingDownIndicator(true);
+					e.goingUpIndicator(false);					
                 }
-                e.stop[floorNum] = 0;
-                console.log(e.stop);
+                e.stop[floorNum] = false;
+                // console.log(e.stop);
             });
         });
         
