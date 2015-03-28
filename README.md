@@ -31,6 +31,7 @@ Plain stupid.
 * Elavators constantly go from bottom to top and return, using indicators
 * Stop at floors to unload or to pickup passengers (if evevator has capacity)
 * Passengers waiting at floors are managed using two state machines (up/down)
+* Works for all challenges up to 10. Waitings times are too high for higher challenges.
 ![Up Down Strategy Stats](img/UpDownStrategyStats.PNG?raw=true)
 
 
