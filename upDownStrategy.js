@@ -4,21 +4,25 @@
         var max = floors.length - 1;
         
         elevators.forEach(function(e) {
-            e["stop"] = [false, false, false];
+            e["unloading"] = [false, false, false];
         });
 
         elevators.forEach(function(e) {
             e.on("passing_floor", function(floorNum, direction) {
-                if(e.stop[floorNum]) {                    
+                if(e.unloading[floorNum]) {                    
                     e.goToFloor(floorNum, true);
-                }
+                } else if (e.loadFactor() < 0.6 && Math.random() < 0.5){
+					e.goToFloor(floorNum, true);
+				}
+				console.log(e.loadFactor());
+				console.log(e.destinationQueue);
             });
         });
         
         elevators.forEach(function(e) {
             e.on("floor_button_pressed", function(floorNum) {
-                e.stop[floorNum] = true;
-                // console.log(e.stop);
+                e.unloading[floorNum] = true;
+                // console.log(e.unloading);
             });
         });
         
@@ -34,8 +38,8 @@
 					e.goingDownIndicator(true);
 					e.goingUpIndicator(false);					
                 }
-                e.stop[floorNum] = false;
-                // console.log(e.stop);
+                e.unloading[floorNum] = false;
+                // console.log(e.unloading);
             });
         });
         
