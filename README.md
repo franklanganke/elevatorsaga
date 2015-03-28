@@ -27,3 +27,9 @@ Plain stupid.
 * Demand from floors is managed via global demand map
 * High success rate for challenges 1 to 5
 
+### [Up Down Strategy] (upDownStrategy.js)
+* Elavators constantly go from bottom to top and return, using indicators
+* Stop at floors to unload or to pickup passengers (if evevator has capacity)
+* Passengers waiting at floors are managed using two state machines (up/down)
+
+
