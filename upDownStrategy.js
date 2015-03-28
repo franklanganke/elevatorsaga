@@ -3,6 +3,9 @@
 
         var max = floors.length - 1;
 		
+		// kickstart one to balance elevators going up and down at a time
+		elevators[Math.floor(Math.random()*elevators.length)].goToFloor(max, true);
+		
 		var upDemand = [];
 		var downDemand = []
 		for (var i = 0; i < floors.length; i++) {
@@ -11,6 +14,7 @@
 		}
 		        
         elevators.forEach(function(e) {
+			// how do I dynamically init arrays?
             e["unloading"] = [false, false, false];
         });
 
@@ -22,7 +26,7 @@
 					return;
 				}
 				
-                if (e.loadFactor() > 1.1) {
+                if (e.loadFactor() > 0.2) {
 					return;
 				}
 				
